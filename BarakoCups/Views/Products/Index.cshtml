@@ -1,0 +1,54 @@
+﻿@model IEnumerable<BarakoCups.Models.Product>
+
+@{
+    ViewData["Title"] = "Product Catalog";
+}
+
+<div class="max-w-7xl mx-auto mt-10 px-6">
+    <div class="flex items-center justify-between mb-8">
+        <h1 class="text-3xl font-bold text-[#3E0703]">Product Catalog</h1>
+        <a asp-action="Create"
+           class="bg-[#3E0703] text-white px-5 py-2 rounded-lg shadow hover:bg-[#5e0b06] transition transform hover:scale-105">
+            + Add New Product
+        </a>
+    </div>
+
+    <!-- Grid Product List -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+        @foreach (var item in Model)
+        {
+            <div class="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-lg transition">
+                <!-- Image -->
+                <div class="h-48 bg-gray-100 flex items-center justify-center overflow-hidden">
+                    <img src="@item.ImageUrl" alt="@item.Name" class="h-full object-cover" />
+                </div>
+
+                <!-- Details -->
+                <div class="p-5">
+                    <h2 class="text-xl font-semibold text-gray-800">@item.Name</h2>
+                    <p class="text-lg font-bold text-[#3E0703] mt-2">₱@item.Price</p>
+                    <p class="text-sm text-gray-600 mt-1">Stock: @item.Stock</p>
+                    <p class="text-sm @(item.IsActive ? "text-green-600" : "text-red-600") font-medium mt-1">
+                        @(item.IsActive ? "Active" : "Inactive")
+                    </p>
+
+                    <!-- Action Buttons -->
+                    <div class="mt-4 flex space-x-3">
+                        <a asp-action="Edit" asp-route-id="@item.ProductId"
+                           class="px-4 py-2 text-sm bg-blue-600 text-white rounded-lg hover:bg-blue-700">
+                            Edit
+                        </a>
+                        <a asp-action="Details" asp-route-id="@item.ProductId"
+                           class="px-4 py-2 text-sm bg-gray-600 text-white rounded-lg hover:bg-gray-700">
+                            Details
+                        </a>
+                        <a asp-action="Delete" asp-route-id="@item.ProductId"
+                           class="px-4 py-2 text-sm bg-red-600 text-white rounded-lg hover:bg-red-700">
+                            Delete
+                        </a>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>

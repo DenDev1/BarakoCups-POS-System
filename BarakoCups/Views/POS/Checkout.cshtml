@@ -1,0 +1,26 @@
+﻿@model CheckoutVM
+@{
+    ViewData["Title"] = "Checkout";
+}
+<div class="max-w-md mx-auto py-10">
+    <h1 class="text-3xl font-bold mb-6">Checkout</h1>
+
+    <form method="post" class="space-y-6">
+        <div>
+            <label class="block font-semibold mb-2">Payment Method</label>
+            <select asp-for="PaymentMethod" class="w-full border rounded-lg px-3 py-2">
+                <option value="1">Cash</option>
+                <option value="2">Credit</option>
+            </select>
+            <span asp-validation-for="PaymentMethod" class="text-red-600 text-sm"></span>
+        </div>
+
+        <button class="bg-[#3E0703] text-white px-6 py-3 rounded-lg hover:bg-[#5e0b06]">
+            Confirm & Place Order
+        </button>
+    </form>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

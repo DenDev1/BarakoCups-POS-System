@@ -1,0 +1,53 @@
+﻿@model Order
+@{
+    Layout = null; // clean print view
+    var store = "My BarakoCups";
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Receipt #@Model.OrderId</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <style>
+        body { font-family: system-ui, Segoe UI, Roboto, Arial; margin: 24px; }
+        .receipt { max-width: 420px; margin: 0 auto; border: 1px dashed #aaa; padding: 16px; }
+        .title { text-align: center; font-weight: 800; font-size: 20px; }
+        table { width:100%; border-collapse: collapse; margin-top: 12px; }
+        th, td { font-size: 14px; padding: 6px 0; }
+        tfoot td { font-weight: 700; border-top: 1px solid #ccc; }
+        .muted { color:#666; font-size:12px; }
+        .btn { display:inline-block; margin-top: 16px; padding:8px 12px; background:#111; color:#fff; text-decoration:none; border-radius:6px;}
+        @@media print {.btn { display:none; } .receipt{ border:none; } body{ margin:0; } }
+    </style>
+</head>
+<body>
+    <div class="receipt">
+        <div class="title">@store</div>
+        <div class="muted">Receipt #: @Model.OrderId • @Model.CreatedAt:g</div>
+        <div class="muted">Payment: @Model.PaymentMethod</div>
+
+        <table>
+            <thead>
+                <tr><th align="left">Item</th><th align="right">Qty</th><th align="right">Subtotal</th></tr>
+            </thead>
+            <tbody>
+                @foreach (var i in Model.Items)
+                {
+                    <tr>
+                        <td>@i.Product.Name<br /><span class="muted">₱@i.UnitPrice.ToString("0.00")</span></td>
+                        <td align="right">@i.Quantity</td>
+                        <td align="right">₱@(i.UnitPrice * i.Quantity).ToString("0.00")</td>
+                    </tr>
+                }
+            </tbody>
+            <tfoot>
+                <tr><td></td><td align="right">Total</td><td align="right">₱@Model.Total.ToString("0.00")</td></tr>
+            </tfoot>
+        </table>
+
+        <p class="muted">Thank you for choosing BarakoCups!</p>
+        <a href="javascript:window.print()" class="btn">Print</a>
+    </div>
+</body>
+</html>
