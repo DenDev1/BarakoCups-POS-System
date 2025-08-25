@@ -1,9 +1,9 @@
-﻿// Please see documentation at https://learn.microsoft.com/aspnet/core/client-side/bundling-and-minification
-// for details on configuring this project to bundle and minify static web assets.
-
-// Write your JavaScript code.
-const swiper = new Swiper(".mySwiper", {
+﻿var swiper = new Swiper(".mySwiper", {
     loop: true,
+    autoplay: {
+        delay: 3000,  // 3 seconds between slides
+        disableOnInteraction: false
+    },
     pagination: {
         el: ".swiper-pagination",
         clickable: true,
@@ -12,4 +12,14 @@ const swiper = new Swiper(".mySwiper", {
         nextEl: ".swiper-button-next",
         prevEl: ".swiper-button-prev",
     },
+    slidesPerView: 1,
+    spaceBetween: 30,
+    breakpoints: {
+        768: {
+            slidesPerView: 2,
+        },
+        1024: {
+            slidesPerView: 3,
+        }
+    }
 });

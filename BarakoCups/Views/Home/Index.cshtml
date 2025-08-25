@@ -28,15 +28,30 @@
     </div>
 </section>
 
+
 <!-- About Section -->
-<section id="about" class="py-20 bg-white text-center">
-    <h2 class="text-4xl font-bold text-[#3E0703] mb-8">☕ About Us</h2>
-    <p class="max-w-3xl mx-auto text-gray-600 text-lg leading-relaxed">
-        At <span class="font-semibold text-[#3E0703]">My BarakoCups</span>, we celebrate Filipino coffee heritage.
-        Our mission is simple: bring the boldest, richest Batangas Barako coffee straight to your cup while
-        empowering local farmers and supporting communities.
-    </p>
+<section id="about" class="py-20 bg-white">
+    <div class="container mx-auto px-4 flex flex-col md:flex-row items-center md:items-start text-center md:text-left md:gap-12">
+
+        <!-- Image on the Left -->
+        <div class="md:w-1/2 mb-8 md:mb-0">
+            <img src="/images/barista.jpeg" alt="Barako Coffee" class="w-full h-auto rounded-lg shadow-lg">
+        </div>
+
+        <!-- Text on the Right -->
+        <div class="md:w-1/2">
+            <h2 class="text-4xl font-bold text-[#3E0703] mb-6">☕ About Us</h2>
+            <p class="max-w-xl text-gray-600 text-lg leading-relaxed">
+                At <span class="font-semibold text-[#3E0703]">My BarakoCups</span>, we celebrate Filipino coffee heritage.
+                Our mission is simple: bring the boldest, richest Batangas Barako coffee straight to your cup while
+                empowering local farmers and supporting communities.
+            </p>
+        </div>
+
+    </div>
 </section>
+
+
 <!-- Products Section with Carousel -->
 <section id="products" class="py-20 bg-[#CFAB8D] text-center">
     <h2 class="text-4xl font-bold text-[#3E0703] mb-12">Our Bestsellers</h2>
@@ -46,34 +61,40 @@
         <div class="swiper-wrapper">
             <!-- Product Card -->
             <div class="swiper-slide">
-                <div class="bg-white/80 backdrop-blur-md shadow-lg rounded-3xl p-6 hover:shadow-2xl transition transform hover:scale-105 flex flex-col">
+                <div class="flex flex-col bg-white/80 backdrop-blur-md shadow-lg rounded-3xl p-6 hover:shadow-2xl transition transform hover:scale-105 h-full">
                     <div class="w-full h-72 overflow-hidden rounded-2xl">
-                        <img src="/images/1.jpg" alt="Barako Beans" class="w-full h-full ">
+                        <img src="/images/1.jpg" alt="Barako Beans" class="w-full h-full object-cover">
                     </div>
-                    <h3 class="text-2xl font-semibold text-[#3E0703] mt-4">Barako Beans</h3>
-                    <p class="text-gray-600 mt-2">Freshly roasted premium Batangas Barako beans for your home brew.</p>
+                    <div class="flex-1 mt-4 text-[#3E0703] text-start md:text-center">
+                        <h3 class="text-2xl font-semibold">Barako Beans</h3>
+                        <p class="text-gray-600 mt-2">Freshly roasted premium Batangas Barako beans for your home brew.</p>
+                    </div>
                 </div>
             </div>
 
             <!-- Product Card -->
             <div class="swiper-slide">
-                <div class="bg-white/80 backdrop-blur-md shadow-lg rounded-3xl p-6 hover:shadow-2xl transition transform hover:scale-105 flex flex-col">
+                <div class="flex flex-col bg-white/80 backdrop-blur-md shadow-lg rounded-3xl p-6 hover:shadow-2xl transition transform hover:scale-105 h-full">
                     <div class="w-full h-72 overflow-hidden rounded-2xl">
-                        <img src="/images/cofeee.jpg" alt="Cold Brew" class="w-full h-full ">
+                        <img src="/images/cofeee.jpg" alt="Cold Brew" class="w-full h-full object-cover">
                     </div>
-                    <h3 class="text-2xl font-semibold text-[#3E0703] mt-4">Cold Brew</h3>
-                    <p class="text-gray-600 mt-2">Smooth, bold, and refreshing cold brew coffee, perfect for hot days.</p>
+                    <div class="flex-1 mt-4 text-[#3E0703] text-start md:text-center">
+                        <h3 class="text-2xl font-semibold">Cold Brew</h3>
+                        <p class="text-gray-600 mt-2">Smooth, bold, and refreshing cold brew coffee, perfect for hot days.</p>
+                    </div>
                 </div>
             </div>
 
             <!-- Product Card -->
             <div class="swiper-slide">
-                <div class="bg-white/80 backdrop-blur-md shadow-lg rounded-3xl p-6 hover:shadow-2xl transition transform hover:scale-105 flex flex-col">
+                <div class="flex flex-col bg-white/80 backdrop-blur-md shadow-lg rounded-3xl p-6 hover:shadow-2xl transition transform hover:scale-105 h-full">
                     <div class="w-full h-72 overflow-hidden rounded-2xl">
-                        <img src="/images/coff33.jpg" alt="Espresso" class="w-full h-full">
+                        <img src="/images/coff33.jpg" alt="Espresso" class="w-full h-full object-cover">
                     </div>
-                    <h3 class="text-2xl font-semibold text-[#3E0703] mt-4">Espresso</h3>
-                    <p class="text-gray-600 mt-2">Rich espresso shots crafted with authentic Barako beans.</p>
+                    <div class="flex-1 mt-4 text-[#3E0703] text-start md:text-center">
+                        <h3 class="text-2xl font-semibold">Espresso</h3>
+                        <p class="text-gray-600 mt-2">Rich espresso shots crafted with authentic Barako beans.</p>
+                    </div>
                 </div>
             </div>
         </div>
@@ -143,9 +164,10 @@
     </div>
 </section>
 
+
 @section Scripts {
     <!-- SwiperJS -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.css" />
+            
     <script src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js"></script>
-    <script src="~/js/site.js"></script>
+        
 }
