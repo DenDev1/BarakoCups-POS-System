@@ -4,6 +4,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using BarakoCups.Models;
+using BarakoCups.Models.UserRole;
+using BarakoCups.Models.Account;
 
 namespace BarakoCups.Data
 {
@@ -28,5 +30,7 @@ namespace BarakoCups.Data
                 new Product { ProductId = 4, Name = "Latte", Price = 150, ImageUrl = "/images/latte.jpg", Stock = 70 }
             );
         }
+        public DbSet<BarakoCups.Models.UserRole.Role> Role { get; set; } = default!;
+        public DbSet<BarakoCups.Models.Account.Users> Users { get; set; } = default!;
     }
 }

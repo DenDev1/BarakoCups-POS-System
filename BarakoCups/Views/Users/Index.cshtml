@@ -1,0 +1,51 @@
+﻿@model IEnumerable<BarakoCups.Models.Account.Users>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1 class="text-2xl font-bold mb-6">Users</h1>
+
+<p class="mb-4">
+    <a asp-action="Create" class="px-4 py-2 bg-blue-600 text-white rounded-lg shadow hover:bg-blue-700 transition">
+        Create New
+    </a>
+</p>
+
+<div class="overflow-x-auto">
+    <table class="min-w-full border border-gray-200 rounded-lg shadow-sm">
+        <thead class="bg-gray-100">
+            <tr class="text-left text-sm font-semibold text-gray-700">
+                <th class="px-4 py-3 border-b">First Name</th>
+                <th class="px-4 py-3 border-b">Last Name</th>
+                <th class="px-4 py-3 border-b">Email</th>
+                <th class="px-4 py-3 border-b">Username</th>
+                <th class="px-4 py-3 border-b">Password</th>
+                <th class="px-4 py-3 border-b">Role</th>
+          @*       <th class="px-4 py-3 border-b">Reset Token</th>
+                <th class="px-4 py-3 border-b">Reset Token Expiry</th> *@
+                <th class="px-4 py-3 border-b">Actions</th>
+            </tr>
+        </thead>
+        <tbody class="divide-y divide-gray-200 text-sm text-gray-800">
+            @foreach (var item in Model)
+            {
+                <tr class="hover:bg-gray-50">
+                    <td class="px-4 py-2">@item.FirstName</td>
+                    <td class="px-4 py-2">@item.LastName</td>
+                    <td class="px-4 py-2">@item.Email</td>
+                    <td class="px-4 py-2">@item.Username</td>
+                    <td class="px-4 py-2">@item.Password</td>
+                    <td class="px-4 py-2">@item.Roles.RoleName</td>
+                 @*    <td class="px-4 py-2">@item.ResetToken</td>
+                    <td class="px-4 py-2">@item.ResetTokenExpiry</td> *@
+                    <td class="px-4 py-2 space-x-2">
+                        <a asp-action="Edit" asp-route-id="@item.UserId" class="text-blue-600 hover:underline">Edit</a>
+                        <a asp-action="Details" asp-route-id="@item.UserId" class="text-green-600 hover:underline">Details</a>
+                        <a asp-action="Delete" asp-route-id="@item.UserId" class="text-red-600 hover:underline">Delete</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
