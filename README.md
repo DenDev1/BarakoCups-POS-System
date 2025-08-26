@@ -9,7 +9,7 @@ BarakoCups is a modern ASP.NET Core MVC web application simulating coffee shop o
 🔗 Try it here:https://barakoscafee.somee.com
 
 ✅ Deployed and publicly accessible
-🔎 Searchable on Google (e.g., try searching: "BarakoCups site:your-live-website-url.com")
+🔎 Searchable on Google (e.g., try searching: "BarakoCups site:https://barakoscafee.somee.com")
 ⚠️ Note: Since the app is in Beta, some features may be experimental or under development.
 
 🚀 Project Purpose
@@ -56,7 +56,7 @@ Bootstrap 5
 
 GitHub + Git
 
-Live Deployment (Azure / Hosting Platform)
+Live Deployment (Some/ Hosting Platform)
 
 🔐 Security Practices
 
