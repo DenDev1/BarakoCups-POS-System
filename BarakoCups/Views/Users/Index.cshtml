@@ -6,46 +6,115 @@
 
 <h1 class="text-2xl font-bold mb-6">Users</h1>
 
-<p class="mb-4">
-    <a asp-action="Create" class="px-4 py-2 bg-blue-600 text-white rounded-lg shadow hover:bg-blue-700 transition">
-        Create New
-    </a>
-</p>
+<!-- 🔵 Create Button to Trigger Modal -->
+<button type="button" class="btn btn-primary mb-4"
+        data-bs-toggle="modal"
+        data-bs-target="#userModal"
+        data-url="@Url.Action("Create")">
+    Create New
+</button>
 
-<div class="overflow-x-auto">
-    <table class="min-w-full border border-gray-200 rounded-lg shadow-sm">
-        <thead class="bg-gray-100">
-            <tr class="text-left text-sm font-semibold text-gray-700">
-                <th class="px-4 py-3 border-b">First Name</th>
-                <th class="px-4 py-3 border-b">Last Name</th>
-                <th class="px-4 py-3 border-b">Email</th>
-                <th class="px-4 py-3 border-b">Username</th>
-                <th class="px-4 py-3 border-b">Password</th>
-                <th class="px-4 py-3 border-b">Role</th>
-          @*       <th class="px-4 py-3 border-b">Reset Token</th>
-                <th class="px-4 py-3 border-b">Reset Token Expiry</th> *@
-                <th class="px-4 py-3 border-b">Actions</th>
+<!-- ✅ Users Table -->
+<div class="table-responsive">
+    <table class="table table-bordered table-hover align-middle">
+        <thead class="table-light">
+            <tr>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Email</th>
+                <th>Username</th>
+                <th>Password</th>
+                <th>Role</th>
+                <th>Actions</th>
             </tr>
         </thead>
-        <tbody class="divide-y divide-gray-200 text-sm text-gray-800">
+        <tbody>
             @foreach (var item in Model)
             {
-                <tr class="hover:bg-gray-50">
-                    <td class="px-4 py-2">@item.FirstName</td>
-                    <td class="px-4 py-2">@item.LastName</td>
-                    <td class="px-4 py-2">@item.Email</td>
-                    <td class="px-4 py-2">@item.Username</td>
-                    <td class="px-4 py-2">@item.Password</td>
-                    <td class="px-4 py-2">@item.Roles.RoleName</td>
-                 @*    <td class="px-4 py-2">@item.ResetToken</td>
-                    <td class="px-4 py-2">@item.ResetTokenExpiry</td> *@
-                    <td class="px-4 py-2 space-x-2">
-                        <a asp-action="Edit" asp-route-id="@item.UserId" class="text-blue-600 hover:underline">Edit</a>
-                        <a asp-action="Details" asp-route-id="@item.UserId" class="text-green-600 hover:underline">Details</a>
-                        <a asp-action="Delete" asp-route-id="@item.UserId" class="text-red-600 hover:underline">Delete</a>
+                <tr>
+                    <td>@item.FirstName</td>
+                    <td>@item.LastName</td>
+                    <td>@item.Email</td>
+                    <td>@item.Username</td>
+                    <td>@item.Password</td>
+                    <td>@item.Roles?.RoleName</td>
+                    <td>
+                        <button type="button" class="btn btn-sm btn-outline-primary"
+                                data-bs-toggle="modal"
+                                data-bs-target="#userModal"
+                                data-url="@Url.Action("Edit", new { id = item.UserId })"
+                                data-title="Edit User">
+                            Edit
+                        </button>
+
+                        <a asp-action="Details" asp-route-id="@item.UserId" class="btn btn-sm btn-outline-success">Details</a>
+                        <a asp-action="Delete" asp-route-id="@item.UserId" class="btn btn-sm btn-outline-danger">Delete</a>
                     </td>
                 </tr>
             }
         </tbody>
     </table>
 </div>
+
+<!-- ✅ Bootstrap Modal (for CreateUserPartial) -->
+<div class="modal fade" id="userModal" tabindex="-1" aria-labelledby="userModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="userModalLabel">Create New User</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body" id="modalBody">
+                <!-- Form will load here -->
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // 🔁 Load form into modal when button clicked
+            const userModal = document.getElementById('userModal');
+
+            userModal.addEventListener('show.bs.modal', function (event) {
+                const button = event.relatedTarget;
+                const url = button.getAttribute('data-url');
+                const modalBody = document.getElementById('modalBody');
+
+                fetch(url)
+                    .then(res => res.text())
+                    .then(html => {
+                        modalBody.innerHTML = html;
+                    });
+            });
+
+            // ✅ Submit the form inside modal via JS
+            document.addEventListener('submit', function (e) {
+                const form = e.target;
+                if (form && form.id === 'createUserForm') {
+                    e.preventDefault();
+
+                    const formData = new FormData(form);
+                    fetch(form.action, {
+                        method: 'POST',
+                        body: formData
+                    })
+                        .then(res => res.json())
+                        .then(data => {
+                            if (data.redirectToUrl) {
+                                window.location.href = data.redirectToUrl; // redirect after save
+                            } else {
+                                // re-render the form if server returns validation errors
+                                fetch(form.action)
+                                    .then(r => r.text())
+                                    .then(html => {
+                                        document.getElementById('modalBody').innerHTML = html;
+                                    });
+                            }
+                        });
+                }
+            });
+        });
+    </script>
+}

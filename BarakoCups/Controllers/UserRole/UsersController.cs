@@ -30,29 +30,28 @@ namespace BarakoCups.Controllers.UserRole
         // GET: Users/Create
         public IActionResult Create()
         {
-            ViewData["RoleId"] = new SelectList(_context.Role, "RoleId", "RoleName");
-            return View();
+            var roles = _context.Role.ToList();
+            ViewBag.RoleName = new SelectList(_context.Role, "RoleId", "RoleName");
+            return PartialView("_CreateUserPartial", new Users());
         }
-
-        // POST: Users/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("UserId,FirstName,LastName,Email,Username,Password,RoleId,ResetToken,ResetTokenExpiry")] Users users)
+        public async Task<IActionResult> Create([Bind("UserId,FirstName,LastName,Email,Username,Password,RoleId")] Users users)
         {
             if (ModelState.IsValid)
-
-            {    // Hash the password before saving
-                string hashedPassword = HashingServices.HashData(users.Password);
-                users.Password = hashedPassword;
+            {
+                // Hash password
+                users.Password = HashingServices.HashData(users.Password);
 
                 _context.Add(users);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+
+                // Return JSON to tell JS to redirect to Index
+                return Json(new { success = true, redirectToUrl = Url.Action("Index") });
             }
-            ViewData["RoleId"] = new SelectList(_context.Role, "RoleId", "RoleName", users.RoleId);
-   
+
+            // If validation fails, return the partial again
+            ViewBag.RoleName = new SelectList(_context.Role, "RoleId", "RoleName", users.RoleId);
             return View(users);
         }
 
@@ -70,7 +69,7 @@ namespace BarakoCups.Controllers.UserRole
                 return NotFound();
             }
             ViewData["RoleId"] = new SelectList(_context.Role, "RoleId", "RoleName", users.RoleId);
-            return View(users);
+            return PartialView("_EditUserPartial", users);
         }
 
         // POST: Users/Edit/5
