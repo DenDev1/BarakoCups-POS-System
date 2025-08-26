@@ -1,35 +1,48 @@
-BarakoCups ☕
+BarakoCups ☕ (Beta)
 
-BarakoCups is a modern MVC web application built with ASP.NET Core designed to manage a coffee shop's daily operations, including menu management, orders, and user feedback.
-BarakoCups ☕
+BarakoCups is a modern ASP.NET Core MVC web application simulating coffee shop operations such as managing menus, processing orders, and collecting customer feedback.
 
-BarakoCups is a modern MVC web application built with ASP.NET Core that simulates the operations of a coffee shop—such as managing menus, handling orders, and collecting customer feedback.
+🚧 Currently in Beta Phase – The core features are functional, but active development and improvements are ongoing.
+
+🌐 Live Demo
+
+🔗 Try it here:https://barakoscafee.somee.com
+
+✅ Deployed and publicly accessible
+🔎 Searchable on Google (e.g., try searching: "BarakoCups site:your-live-website-url.com")
+⚠️ Note: Since the app is in Beta, some features may be experimental or under development.
 
 🚀 Project Purpose
 
-This project was built to deepen my understanding of ASP.NET Core MVC, testing frameworks (xUnit and NUnit), and software best practices like secure development and clean architecture.
+The project was created to build and deploy a full-stack application using ASP.NET Core MVC with real-world features, test automation, and secure coding practices — and to experience a full development lifecycle from local dev to production deployment.
 
 🌟 Features
 
-✅ Coffee Menu Management – Admins can add, edit, or remove coffee items.
+✅ Coffee Menu Management (CRUD)
 
-✅ Customer Order Processing – Customers can place and view orders dynamically.
+✅ Order Placement & Status Tracking
 
-✅ Order Status Tracking – Real-time updates of order progress (e.g., "Processing", "Ready for Pickup").
+✅ Customer Feedback & Ratings
 
-✅ Feedback Submission – Users can leave feedback and ratings for their experience.
+✅ Clean Architecture & Codebase
 
-✅ Test Coverage with xUnit/NUnit – Built-in unit tests to ensure code reliability.
+✅ Unit Testing with xUnit/NUnit
 
-✅ Secret Management – Sensitive configurations are excluded and handled securely.
+✅ Secrets Managed Securely
 
-✅ Project Modularization – Follows clean code architecture for scalability and readability.
+✅ Responsive UI (Bootstrap 5)
 
-✅ Cross-Browser Responsive UI – Optimized for both desktop and mobile browsers (with Razor Views and Bootstrap).
+✅ Live Hosting & Search Engine Indexed
 
-✅ Multi-Project Structure – Organized into separate folders for main app and tests (BarakoCups and MyMvcApp.Tests).
+✅ Modular Folder Structure
 
-🔧 Technologies Used
+🧪 Testing
+
+Test files are in the MyMvcApp.Tests folder. To run all tests:
+
+dotnet test
+
+🔧 Tech Stack
 
 ASP.NET Core MVC
 
@@ -43,7 +56,47 @@ Bootstrap 5
 
 GitHub + Git
 
-Environment-based secrets config
+Live Deployment (Azure / Hosting Platform)
+
+🔐 Security Practices
+
+Sensitive credentials excluded using .gitignore
+
+Secrets handled via environment variables
+
+Refer to SECURITY.md for best practices followed
+
+🛠️ Getting Started Locally
+git clone https://github.com/yourusername/BarakoCups.git
+cd BarakoCups
+dotnet restore
+dotnet run
 
 
+Visit https://localhost:5001.
 
+🧪 Beta Phase Notice
+
+This project is currently in Beta. While the main features are working, I'm actively adding enhancements, polishing the UI, and collecting feedback to improve performance and stability.
+
+📈 Planned Improvements
+
+Authentication & Authorization
+
+Admin Dashboard
+
+PDF Receipt / Invoice Export
+
+API Integration (e.g., Payment Gateway)
+
+Deployment Pipeline Automation
+
+🧠 What I Learned
+
+Developing a real-world ASP.NET MVC app from scratch
+
+Writing unit tests with xUnit & NUnit
+
+Managing and deploying apps securely
+
+End-to-end development workflow: Design → Build → Test → Deploy
