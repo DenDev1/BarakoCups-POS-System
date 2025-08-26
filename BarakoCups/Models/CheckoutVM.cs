@@ -6,4 +6,6 @@ public class CheckoutVM
 {
     [Required]
     public PaymentMethod PaymentMethod { get; set; } = PaymentMethod.Cash;
+
+
 }

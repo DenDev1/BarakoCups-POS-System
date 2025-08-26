@@ -8,9 +8,11 @@ using Microsoft.EntityFrameworkCore;
 using BarakoCups.Data;
 using BarakoCups.Models.Account;
 using BarakoCups.Service;
+using Microsoft.AspNetCore.Authorization;
 
 namespace BarakoCups.Controllers.UserRole
 {
+    [Authorize]
     public class UsersController : Controller
     {
         private readonly BarakoCupsContext _context;

@@ -7,9 +7,11 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using BarakoCups.Data;
 using BarakoCups.Models.UserRole;
+using Microsoft.AspNetCore.Authorization;
 
 namespace BarakoCups.Controllers.UserRole
 {
+    [Authorize]
     public class RolesController : Controller
     {
         private readonly BarakoCupsContext _context;

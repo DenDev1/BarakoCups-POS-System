@@ -6,6 +6,8 @@
     <meta name="description" content="My BarakoCups - Bringing the rich heritage of Barako coffee to every Filipino household." />
     <meta name="author" content="My BarakoCups Team" />
     <link href="/css/site.css" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
+
 <!-- Font Awesome (include in your layout if not yet) -->
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
 
@@ -49,8 +51,15 @@
                         <a href="@Url.Action("Index", "Home")#goals" class="hover:text-brown-600">Our Goals</a>
                     </li>
                     <li>
-                        <a href="@Url.Action("Logout", "Login")" class="hover:text-brown-600">Logout</a>
+                        <a href="@Url.Action("Index", "Login")" class="hover:text-brown-600">Login</a>
                     </li>
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        <li>
+                            <a href="@Url.Action("Logout", "Login")" class="hover:text-brown-600">Logout</a>
+                        </li>
+                    }
+
                 </ul>
           
              
